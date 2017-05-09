@@ -1,11 +1,8 @@
 # http://shiny.rstudio.com/gallery/faithful.html
-# conditionalPanel is tricky with modules. See:
-# https://github.com/rstudio/shiny/issues/1586
-# https://gist.github.com/tbadams45/49c71a4314f6b4f299583f4ba96fee54 
 
 library(shiny)
 
-faithfulHistUI <- function(id) {
+faithfulHistInput <- function(id) {
   ns <- NS(id)
   tagList(
     selectInput(inputId = ns("n_breaks"),
@@ -21,8 +18,6 @@ faithfulHistUI <- function(id) {
                   label = strong("Show density estimate"),
                   value = FALSE),
     
-    plotOutput(outputId = ns("hist"), height = "300px"),
-    
     # Display this only if the density is shown.
     # Note kludgey way to pass condition via javascript.
     conditionalPanel(condition = paste0("input['", ns("density"), "'] == true"),
@@ -31,6 +26,10 @@ faithfulHistUI <- function(id) {
                                  min = 0.2, max = 2, value = 1, step = 0.2)
     )
   )
+}
+faithfulHistUI <- function(id) {
+  ns <- NS(id)
+  plotOutput(outputId = ns("hist"), height = "300px")
 }
 
 faithfulHist <- function(input, output, session) {
@@ -57,10 +56,19 @@ server <- function(input, output) {
   callModule(faithfulHist, "faithful")
   }
 
-ui <- bootstrapPage(
-  faithfulHistUI("faithful")
+ui <- fluidPage(
+  titlePanel("Old Faithful"),
+  
+  sidebarLayout(
+    sidebarPanel(
+      faithfulHistInput("faithful")
+    ),
+    mainPanel(
+      faithfulHistUI("faithful")
+    )
   )
-
+)
+    
 shinyApp(ui, server)
 
 
