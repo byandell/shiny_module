@@ -18,7 +18,9 @@ This project is about learning how to use Shiny modules. I developed these as my
     + [Conditional Panel](http://shiny.rstudio.com/gallery/conditionalpanel-demo.html)
     + [Progress Bar](http://shiny.rstudio.com/gallery/progress-bar-example.html)
 
-The folder has several R scripts See also [Conference Material on Modules](https://github.com/rstudio/ShinyDeveloperConference/Modules). These were adapted from and inspired by Garrett's talk. Each file is a complete shiny app that can be run.
+The folder has several R scripts.
+Latest material is in the [oldfaithful](https://github.com/byandell/shiny_module/tree/master/oldfaithful) folder.
+See also [Conference Material on Modules](https://github.com/rstudio/ShinyDeveloperConference/Modules). These were adapted from and inspired by Garrett's talk. Each file is a complete shiny app that can be run.
 
 * `simple.R` simple Shiny script using sliderInput() and textOutput()
 * `module.R` simple.R modified to have key components in Shiny module

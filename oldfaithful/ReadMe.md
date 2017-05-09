@@ -5,6 +5,17 @@ date: "May 9, 2017"
 output: html_document
 ---
 
+This folder explores the Old Faithful example in some detail. Examples are:
+
+- `oldfaithful_simple.R`: shiny app in one file
+- `oldfaithful_module.R`: shiny app in one file with details in module
+- `oldfaithful_sidepanel.R`: shiny app with module and fancier side panel
+
+This example has a panel for the density bandwidth slider that only appears conditionally on a request to show `density`. In the simple example, the `condition` is relatively straightforward. However, when using modules, it is necessary to be a bit tricky. The `condition` is interpreted via javascript, and that clashes with the shiny module namespace conventions slightly.
+
+The `conditionalPanel()` is one way to do a conditional change to layout; it is done within the `ui()` component of a shiny app. Another way is to use `uiOutput()` in `ui()` and `renderUI()` in `server()`. This is done in the `oldfaithful_sidepanel_renderUI.R` example.
+
+
 This is about diagnostics with the Old Faithful example.
 
 - [ReactLog](http://shiny.rstudio.com/reference/shiny/latest/showReactLog.html)
