@@ -26,7 +26,7 @@ See also [Conference Material on Modules](https://github.com/rstudio/ShinyDevelo
 * `module.R` simple.R modified to have key components in Shiny module
 * `nested.R` example nesting two modules
 * `*_renderUI.R` examples using renderUI() in server and uiOutput() in ui 
-* `*_observeEvent.R` examples using observeEvent() for actionButtion()
+* `*_observeEvent.R` examples using observeEvent() for actionButton()
 * `*_observe.R` examples using observe() for checkboxInput()
 * `*_renderUI_*.R` examples using renderUI and observe() or observeEvent()
 
@@ -50,3 +50,9 @@ Key things to notice about namespace use for modules:
 * module server has no special arrangements for `update*Input`
     + `updateSliderInput(server, "slider", ...)`
     + used in `observe()` and `observeEvent()` 
+* `conditionalPanel` does not work as expected with modules
+    + see worked examples in [oldfaithful](https://github.com/byandell/shiny_module/tree/master/oldfaithful) folder
+    + `condition` argument is interpreted by javascript
+    + `input` elements for a module namespace require care with JS
+    + see [Rstudio Shiny issue](https://github.com/rstudio/shiny/issues/1586) or [TB Adams gist](https://gist.github.com/tbadams45/49c71a4314f6b4f299583f4ba96fee54) for helpful solutions 
+
